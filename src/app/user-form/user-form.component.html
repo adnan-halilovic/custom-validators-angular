@@ -1,0 +1,141 @@
+<div class="content">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="register-heading">
+      <h2>Register today!</h2>
+      <p>
+        Unlock personalized workout plans, nutrition guidance, progress
+        tracking, and more!
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        id="firstName"
+        type="text"
+        formControlName="firstName"
+        class="form-control"
+      />
+      @if ( userForm.get('firstName')?.invalid &&
+      userForm.get('firstName')?.touched ) {
+      <div>
+        @if (userForm.get('firstName')?.errors?.['required']) {
+        <small>First name is required.</small>
+        } @if (userForm.get('firstName')?.errors?.['minlength']) {
+        <small>Minimum 2 characters required.</small>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        id="lastName"
+        type="text"
+        formControlName="lastName"
+        class="form-control"
+      />
+      @if ( userForm.get('lastName')?.invalid &&
+      userForm.get('lastName')?.touched ) {
+      <div>
+        @if (userForm.get('lastName')?.errors?.['required']) {
+        <small>Last name is required.</small>
+        } @if (userForm.get('lastName')?.errors?.['minlength']) {
+        <small>Minimum 2 characters required.</small>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        class="form-control"
+      />
+      @if (userForm.get('email')?.invalid && userForm.get('email')?.touched) {
+      <div>
+        @if (userForm.get('email')?.errors?.['required']) {
+        <small>Email is required.</small>
+        } @if (userForm.get('email')?.errors?.['email']) {
+        <small>Please enter a valid email.</small>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input
+        id="phone"
+        type="text"
+        formControlName="phone"
+        class="form-control"
+      />
+      @if (userForm.get('phone')?.invalid && userForm.get('phone')?.touched) {
+      <div>
+        @if (userForm.get('phone')?.errors?.['invalidPhone']) {
+        <small>Invalid phone number. Must be 10 digits.</small>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        class="form-control"
+      />
+      @if ( userForm.get('password')?.invalid &&
+      userForm.get('password')?.touched ) {
+      <div>
+        @if (userForm.get('password')?.errors?.['required']) {
+        <small>Password is required.</small>
+        } @if (userForm.get('password')?.errors?.['minlength']) {
+        <small>Minimum 8 characters required.</small>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        id="confirmPassword"
+        type="password"
+        formControlName="confirmPassword"
+        class="form-control"
+      />
+      @if ( userForm.get('confirmPassword')?.invalid &&
+      userForm.get('confirmPassword')?.touched ) {
+      <div>
+        @if (userForm.get('confirmPassword')?.errors?.['mismatch']) {
+        <small>Passwords do not match.</small>
+        }
+      </div>
+      }
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
+      Submit
+    </button>
+  </form>
+  <div class="register-image-wrapper">
+    <div class="register-image">
+      <div class="register-image-content">
+        <h3>New fitness app</h3>
+        <p>
+          Start your fitness journey today. Whether you're aiming to lose
+          weight, build muscle, or maintain a healthy lifestyle. Sign up now and
+          unlock personalized workout plans, nutrition guidance, progress
+          tracking, and more!
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
