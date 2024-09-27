@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
+import creditCardValidator from '../shared/validators/creditCardValidator.validator';
 import { phoneValidator } from '../shared/validators/phoneValidator.validator';
 @Component({
   selector: 'app-user-form',
@@ -19,7 +25,8 @@ export class UserFormComponent {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, phoneValidator]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required]]
+      confirmPassword: ['', [Validators.required]],
+      creditCard: ['', [Validators.required, creditCardValidator]]
     });
   }
   onSubmit() {
