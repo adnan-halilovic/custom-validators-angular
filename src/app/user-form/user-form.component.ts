@@ -6,8 +6,8 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import creditCardValidator from '../shared/validators/creditCardValidator.validator';
-import { phoneValidator } from '../shared/validators/phoneValidator.validator';
+import CreditCardValidator from '../shared/validators/credit-card-validator.validator';
+import PhoneValidator from '../shared/validators/phone-validator.validator';
 @Component({
   selector: 'app-user-form',
   standalone: true,
@@ -23,10 +23,10 @@ export class UserFormComponent {
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, phoneValidator]],
+      phone: ['', [Validators.required, PhoneValidator]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]],
-      creditCard: ['', [Validators.required, creditCardValidator]]
+      creditCard: ['', [Validators.required, CreditCardValidator]]
     });
   }
   onSubmit() {

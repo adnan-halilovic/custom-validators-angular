@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-export default function creditCardValidator(
+export default function CreditCardValidator(
   control: AbstractControl
 ): ValidationErrors | null {
   const cardNumber = control.value;
