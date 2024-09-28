@@ -7,6 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 import CreditCardValidator from '../shared/validators/credit-card-validator.validator';
+import PasswordValidator from '../shared/validators/password-validator.validator';
 import PhoneValidator from '../shared/validators/phone-validator.validator';
 @Component({
   selector: 'app-user-form',
@@ -24,8 +25,18 @@ export class UserFormComponent {
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, PhoneValidator]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          PasswordValidator.passwordStrength
+        ]
+      ],
+      confirmPassword: [
+        '',
+        [Validators.required, PasswordValidator.matchPassword]
+      ],
       creditCard: ['', [Validators.required, CreditCardValidator]]
     });
   }
