@@ -46,32 +46,59 @@
       </div>
       }
     </div>
-<div class="form-group">
-  <label for="birthDate">Birth Date</label>
-  <input
-    id="birthDate"
-    type="date"
-    formControlName="birthDate"
-    class="form-control"
-  />
-  @if ( userForm.get('birthDate')?.invalid && userForm.get('birthDate')?.touched
-  ) {
-  <div>
-    @if (userForm.get('birthDate')?.errors?.['required']) {
-    <small>Birth date is required.</small>
-    }
-  </div>
-  <div>
-    @if (userForm.get('birthDate')?.errors?.['ageTooLow']; as ageTooLow) {
-    <small
-      >You have to be {{ ageTooLow.requiredAge }} or older to access this
-      site.</small
-    >
-    }
-  </div>
-  }
-</div>
 
+    <div class="form-group">
+      <label for="birthDate">Birth Date</label>
+      <input
+        id="birthDate"
+        type="date"
+        formControlName="birthDate"
+        class="form-control"
+      />
+      @if ( userForm.get('birthDate')?.invalid &&
+      userForm.get('birthDate')?.touched ) {
+      <div>
+        @if (userForm.get('birthDate')?.errors?.['required']) {
+        <small>Birth date is required.</small>
+        }
+      </div>
+      <div>
+        @if (userForm.get('birthDate')?.errors?.['ageTooLow']; as ageTooLow) {
+        <small
+          >You have to be {{ ageTooLow.requiredAge }} or older to access this
+          site.</small
+        >
+        }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="startingDate">Starting Date</label>
+      <input
+        id="startingDate"
+        type="date"
+        formControlName="startingDate"
+        class="form-control"
+      />
+      @if ( userForm.get('startingDate')?.invalid &&
+      userForm.get('startingDate')?.touched ) {
+      <div>
+        @if (userForm.get('startingDate')?.errors?.['required']) {
+        <small>Starting date is required.</small>
+        }
+      </div>
+      <div>
+        @if (userForm.get('startingDate')?.errors?.['dateOutOfRange']; as dateOutOfRange) {
+        <small
+          >Date should be in a range from 
+          {{ dateOutOfRange.minDate | date : 'mediumDate'}} 
+          to {{ dateOutOfRange.maxDate | date : 'mediumDate'}}</small
+        >
+        }
+      </div>
+      }
+    </div>
 
     <div class="form-group">
       <label for="email">Email</label>
@@ -109,29 +136,28 @@
       }
     </div>
 
-<div class="form-group">
-  <label for="creditCard">Credit card</label>
-  <input
-    id="creditCard"
-    type="text"
-    formControlName="creditCard"
-    class="form-control"
-  />
-  @if (userForm.get('creditCard')?.invalid &&
-  userForm.get('creditCard')?.touched) {
-  <div>
-    @if (userForm.get('creditCard')?.errors?.['invalidCardNumber']) {
-    <small>Invalid card number.</small>
-    }
-  </div>
-  <div>
-    @if (userForm.get('creditCard')?.errors?.['required']) {
-    <small>Card number is required.</small>
-    }
-  </div>
-  }
-</div>
-
+    <div class="form-group">
+      <label for="creditCard">Credit card</label>
+      <input
+        id="creditCard"
+        type="text"
+        formControlName="creditCard"
+        class="form-control"
+      />
+      @if (userForm.get('creditCard')?.invalid &&
+      userForm.get('creditCard')?.touched) {
+      <div>
+        @if (userForm.get('creditCard')?.errors?.['invalidCardNumber']) {
+        <small>Invalid card number.</small>
+        }
+      </div>
+      <div>
+        @if (userForm.get('creditCard')?.errors?.['required']) {
+        <small>Card number is required.</small>
+        }
+      </div>
+      }
+    </div>
 
     <div class="form-group">
       <label for="password">Password</label>
@@ -145,18 +171,18 @@
       userForm.get('password')?.touched ) {
       <div>
         @if (userForm.get('password')?.errors?.['required']) {
-<div><small>Password is required.</small></div>
+        <div><small>Password is required.</small></div>
 
         } @if (userForm.get('password')?.errors?.['minlength']) {
-<div><small>Minimum 8 characters required.</small></div>
-}@if (userForm.get('password')?.errors?.['hasUpperCase']) {
-<div><small>Password needs at least 1 uppercase letter.</small></div>
-} @if (userForm.get('password')?.errors?.['hasLowerCase']) {
-<div><small>Password needs at least 1 lowercase letter.</small></div>
-} @if (userForm.get('password')?.errors?.['hasNumericChar']) {
-<div><small>Password needs at least 1 number.</small></div>
-} @if (userForm.get('password')?.errors?.['hasSpecialChar']) {
-<div><small>Password needs at least 1 special character.</small></div>
+        <div><small>Minimum 8 characters required.</small></div>
+        }@if (userForm.get('password')?.errors?.['hasUpperCase']) {
+        <div><small>Password needs at least 1 uppercase letter.</small></div>
+        } @if (userForm.get('password')?.errors?.['hasLowerCase']) {
+        <div><small>Password needs at least 1 lowercase letter.</small></div>
+        } @if (userForm.get('password')?.errors?.['hasNumericChar']) {
+        <div><small>Password needs at least 1 number.</small></div>
+        } @if (userForm.get('password')?.errors?.['hasSpecialChar']) {
+        <div><small>Password needs at least 1 special character.</small></div>
 
         }
       </div>
