@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
+import MinimumAgeValidator from '../shared/validators/age-validator.validator';
 import CreditCardValidator from '../shared/validators/credit-card-validator.validator';
 import PasswordValidator from '../shared/validators/password-validator.validator';
 import PhoneValidator from '../shared/validators/phone-validator.validator';
@@ -23,6 +24,7 @@ export class UserFormComponent {
     this.userForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
+      birthDate: ['', [Validators.required, MinimumAgeValidator(20)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, PhoneValidator]],
       password: [

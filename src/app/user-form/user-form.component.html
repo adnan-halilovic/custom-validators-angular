@@ -46,6 +46,32 @@
       </div>
       }
     </div>
+<div class="form-group">
+  <label for="birthDate">Birth Date</label>
+  <input
+    id="birthDate"
+    type="date"
+    formControlName="birthDate"
+    class="form-control"
+  />
+  @if ( userForm.get('birthDate')?.invalid && userForm.get('birthDate')?.touched
+  ) {
+  <div>
+    @if (userForm.get('birthDate')?.errors?.['required']) {
+    <small>Birth date is required.</small>
+    }
+  </div>
+  <div>
+    @if (userForm.get('birthDate')?.errors?.['ageTooLow']; as ageTooLow) {
+    <small
+      >You have to be {{ ageTooLow.requiredAge }} or older to access this
+      site.</small
+    >
+    }
+  </div>
+  }
+</div>
+
 
     <div class="form-group">
       <label for="email">Email</label>
