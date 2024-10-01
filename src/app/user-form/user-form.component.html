@@ -101,6 +101,27 @@
     </div>
 
     <div class="form-group">
+      <label for="idCard">Upload ID Card</label>
+      <input
+        id="idCard"
+        type="file"
+        class="form-control"
+        (change)="onFileChange($event)"
+      />
+      @if (userForm.get('idCard')?.invalid && userForm.get('idCard')?.touched) {
+      <div>
+        @if (userForm.get('idCard')?.errors?.['required']) {
+        <small>ID Card is required.</small>
+        } @if (userForm.get('idCard')?.errors?.['fileSizeExeeded']; as fileExeeded) {
+        <small>File size exceeds the limit. Current file size is
+          {{fileExeeded.actualSize}}. Maximum upload file size is {{fileExeeded.maxSize}}
+        </small>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
       <label for="email">Email</label>
       <input
         id="email"

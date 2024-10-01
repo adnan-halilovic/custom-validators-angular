@@ -9,6 +9,7 @@ import {
 import MinimumAgeValidator from '../shared/validators/age-validator.validator';
 import CreditCardValidator from '../shared/validators/credit-card-validator.validator';
 import DateRangeValidator from '../shared/validators/date-range-validator.validator';
+import FileSizeValidator from '../shared/validators/file-size-validator.validator';
 import PasswordValidator from '../shared/validators/password-validator.validator';
 import PhoneValidator from '../shared/validators/phone-validator.validator';
 @Component({
@@ -33,6 +34,7 @@ export class UserFormComponent {
         '',
         [Validators.required, DateRangeValidator(this.today, this.endDateMax)]
       ],
+      idCard: [null, [Validators.required, FileSizeValidator(5)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, PhoneValidator]],
       password: [
@@ -49,6 +51,18 @@ export class UserFormComponent {
       ],
       creditCard: ['', [Validators.required, CreditCardValidator]]
     });
+  }
+
+  onFileChange(event: any){
+    const file = event.target.files[0];
+
+    if(file){
+      this.userForm.patchValue({
+        idCard: file
+      })
+      
+      this.userForm.get('idCard')?.markAsTouched();
+    }
   }
   onSubmit() {
     if (this.userForm.valid) {
