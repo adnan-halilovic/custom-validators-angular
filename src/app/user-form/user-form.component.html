@@ -135,7 +135,12 @@
         <small>Email is required.</small>
         } @if (userForm.get('email')?.errors?.['email']) {
         <small>Please enter a valid email.</small>
-        }
+        }@if (userForm.get('email')?.errors?.['emailDomain']; as emailErrors) {
+          <small>Please use allowed domains only.</small>
+          @for(domain of emailErrors.allowedDomains; track $index){
+            <small> - {{domain}}</small>
+          }
+          }
       </div>
       }
     </div>

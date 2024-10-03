@@ -9,6 +9,7 @@ import {
 import MinimumAgeValidator from '../shared/validators/age-validator.validator';
 import CreditCardValidator from '../shared/validators/credit-card-validator.validator';
 import DateRangeValidator from '../shared/validators/date-range-validator.validator';
+import EmailDomainsValidator from '../shared/validators/email-validator.validator';
 import FileSizeValidator from '../shared/validators/file-size-validator.validator';
 import PasswordValidator from '../shared/validators/password-validator.validator';
 import PhoneValidator from '../shared/validators/phone-validator.validator';
@@ -24,6 +25,7 @@ export class UserFormComponent {
   today = new Date();
   twoWeeks = 86400000 * 14;
   endDateMax = new Date(this.today.getTime() + this.twoWeeks);
+  allowedEmailDomains = ['gmail.com', 'ourdomain.com'];
 
   constructor(private fb: FormBuilder) {
     this.userForm = this.fb.group({
@@ -35,7 +37,14 @@ export class UserFormComponent {
         [Validators.required, DateRangeValidator(this.today, this.endDateMax)]
       ],
       idCard: [null, [Validators.required, FileSizeValidator(5)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          EmailDomainsValidator(this.allowedEmailDomains)
+        ]
+      ],
       phone: ['', [Validators.required, PhoneValidator]],
       password: [
         '',
@@ -53,14 +62,14 @@ export class UserFormComponent {
     });
   }
 
-  onFileChange(event: any){
+  onFileChange(event: any) {
     const file = event.target.files[0];
 
-    if(file){
+    if (file) {
       this.userForm.patchValue({
         idCard: file
-      })
-      
+      });
+
       this.userForm.get('idCard')?.markAsTouched();
     }
   }
